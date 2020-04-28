@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
+<% if (request.getParameter("hospitalName") != null)  
+{  
+	session.setAttribute("hospitalName", request.getParameter("hospitalName"));  
+	session.setAttribute("hospitalProvince", request.getParameter("hospitalProvince"));  
+	session.setAttribute("hospitalDistrict", request.getParameter("hospitalDistrict"));  
+	session.setAttribute("hospitalEmail", request.getParameter("hospitalEmail"));
+	session.setAttribute("hospitalPhone", request.getParameter("hospitalPhone"));
+	session.setAttribute("hospitalServices", request.getParameter("hospitalServices"));;  
+}  
+%>  
   
 
 <!DOCTYPE html> 
@@ -12,7 +22,7 @@
 <body> 
  
 	<h1>Hospital Management</h1>  
-	<form >   
+	<form method="post" action="hospital.jsp" >   
 		Hospital Name: <input name="hospitalName" type="text" ><br>   
 		Hospital Province: <input name="hospitalProvince" type="text" ><br>   
 		Hospital District: <input name="hospitalDistrict" type="text" ><br>   
@@ -35,12 +45,12 @@
 	 		<th>Remove</th>   
  		</tr>   
  		<tr>    
- 			<td>ABC</td>    
- 			<td>XYZ</td>    
- 			<td>xyz</td>    
- 			<td>abc@gmail.com</td> 
- 			<td>01234567</td>
- 			<td>abc,xyz</td>   
+ 			<td><%out.print(session.getAttribute("hospitalName")); %></td>    
+ 			<td><%out.print(session.getAttribute("hospitalProvince")); %></td>    
+ 			<td><%out.print(session.getAttribute("hospitalDistrict")); %></td>    
+ 			<td><%out.print(session.getAttribute("hospitalEmail")); %></td> 
+ 			<td><%out.print(session.getAttribute("hospitalPhone")); %></td>
+ 			<td><%out.print(session.getAttribute("hospitalServices")); %></td>  
  			<td><input name="btnUpdate" type="button" value="Update"></td>    
  			<td><input name="btnRemove" type="button" value="Remove"></td>   
  		</tr>  
