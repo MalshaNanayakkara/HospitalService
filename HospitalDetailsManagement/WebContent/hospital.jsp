@@ -37,14 +37,17 @@
 <body> 
  
 	<h1>Hospital Management</h1>  
-	<form method="post" action="hospital.jsp" >   
-		Hospital Name: <input name="hospitalName" type="text" class="form-control"><br>   
-		Hospital Province: <input name="hospitalProvince" type="text" class="form-control"><br>   
-		Hospital District: <input name="hospitalDistrict" type="text" class="form-control"><br>   
-		Hospital Email: <input name="hospitalEmail" type="text" class="form-control"><br>
-		Hospital Phone: <input name="hospitalPhone" type="text" class="form-control"><br>
-		Hospital Services: <input name="hospitalServices" type="text" class="form-control"><br>   
-		<input name="btnSubmit" type="submit" value="Save" class="btn btn-primary">  
+	<form id="formHospital" name="formHospital" method="post" action="hospital.jsp" > 
+	  
+		Hospital Name: <input id="hospitalName" name="hospitalName" type="text" class="form-control form-control-sm"><br>   
+		Hospital Province: <input id="hospitalProvince" name="hospitalProvince" type="text" class="form-control form-control-sm"><br>   
+		Hospital District: <input id="hospitalDistrict" name="hospitalDistrict" type="text" class="form-control form-control-sm"><br>   
+		Hospital Email: <input id="hospitalEmail" name="hospitalEmaile" type="text" class="form-control form-control-sm"><br>
+		Hospital Phone:<input id="hospitalPhone" name="hospitalPhone" type="text" class="form-control form-control-sm"><br>
+		Hospital Services: <input id="hospitalServices" name="hospitalServices" type="text" class="form-control form-control-sm"><br> 
+		  
+		<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">
+ 		<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
 	</form>  
 	<div class="alert alert-success">
 		<% out.print(session.getAttribute("statusMsg")); %>
