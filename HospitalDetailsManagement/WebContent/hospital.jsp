@@ -36,15 +36,18 @@
  
 	<h1>Hospital Management</h1>  
 	<form method="post" action="hospital.jsp" >   
-		Hospital Name: <input name="hospitalName" type="text" ><br>   
-		Hospital Province: <input name="hospitalProvince" type="text" ><br>   
-		Hospital District: <input name="hospitalDistrict" type="text" ><br>   
-		Hospital Email: <input name="hospitalEmail" type="text" ><br>
-		Hospital Phone: <input name="hospitalPhone" type="text" ><br>
-		Hospital Services: <input name="hospitalServices" type="text" ><br>   
-		<input name="btnSubmit" type="submit" value="Save">  
+		Hospital Name: <input name="hospitalName" type="text" class="form-control"><br>   
+		Hospital Province: <input name="hospitalProvince" type="text" class="form-control"><br>   
+		Hospital District: <input name="hospitalDistrict" type="text" class="form-control"><br>   
+		Hospital Email: <input name="hospitalEmail" type="text" class="form-control"><br>
+		Hospital Phone: <input name="hospitalPhone" type="text" class="form-control"><br>
+		Hospital Services: <input name="hospitalServices" type="text" class="form-control"><br>   
+		<input name="btnSubmit" type="submit" value="Save" class="btn btn-primary">  
 	</form>  
-	
+	<div class="alert alert-success">
+		<% out.print(session.getAttribute("statusMsg")); %>
+	<br>
+	</div>
 	<% 
 		out.print(session.getAttribute("statusMsg"));
 	%>
