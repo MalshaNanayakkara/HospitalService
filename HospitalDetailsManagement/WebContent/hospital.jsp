@@ -15,6 +15,13 @@
 	 
 	 session.setAttribute("statusMsg", stsMsg);
 	}
+
+	if (request.getParameter("itemID") != null)
+	{
+		Hospital hospitalObj = new Hospital();
+		String stsMsg = hospitalObj.deleteHospitals(request.getParameter("itemID"));
+		session.setAttribute("statusMsg", stsMsg);
+	} 
 %>
   
 
