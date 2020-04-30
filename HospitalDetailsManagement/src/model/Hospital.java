@@ -109,7 +109,7 @@ public class Hospital {
 				
 				output += "<td><input name=\"btnUpdate\" "  
 					   + " type=\"button\" value=\"Update\"></td>"   
-					   + "<td><form method=\"post\" action=\"hospitals.jsp\">"
+					   + "<td><form method=\"post\" action=\"hospital.jsp\">"
 				       + "<input name=\"btnRemove\" "
 					   + " type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
 				       + "<input name=\"hospitalID\" type=\"hidden\" "   
