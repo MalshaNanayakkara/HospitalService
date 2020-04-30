@@ -16,10 +16,10 @@
 	 session.setAttribute("statusMsg", stsMsg);
 	}
 
-	if (request.getParameter("itemID") != null)
+	if (request.getParameter("hospitalID") != null)
 	{
 		Hospital hospitalObj = new Hospital();
-		String stsMsg = hospitalObj.deleteHospitals(request.getParameter("itemID"));
+		String stsMsg = hospitalObj.deleteHospitals(request.getParameter("hospitalID"));
 		session.setAttribute("statusMsg", stsMsg);
 	} 
 %>
@@ -46,12 +46,9 @@
 	</form>  
 	<div class="alert alert-success">
 		<% out.print(session.getAttribute("statusMsg")); %>
-	<br>
 	</div>
-	<% 
-		out.print(session.getAttribute("statusMsg"));
-	%>
 	<br>
+
 	<%
 		Hospital hospitalObj = new Hospital();
 		out.print(hospitalObj.readHospitals());

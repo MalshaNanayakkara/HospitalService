@@ -74,7 +74,7 @@ public class Hospital {
 				return "Error while connecting to the database for reading."; 
 			} 
 			output = "<table border=\"1\"><tr>"
-					+ "<th>Hospital ID</th>"
+					//+ "<th>Hospital ID</th>"
 					+ "<th>Hospital Name</th>"
 					+ "<th>Hospital Province</th>"
 					+ "<th>Hospital District</th>"
@@ -98,8 +98,8 @@ public class Hospital {
 				String hospitalPhone = rs.getString("hospitalPhone");
 				String hospitalServices = rs.getString("hospitalServices");
 				
-				output += "<tr><td>" + hospitalID + "</td>";
-				output += "<td>" + hospitalName + "</td>";
+				//output += "<tr><td>" + hospitalID + "</td>";
+				output += "<tr><td>" + hospitalName + "</td>";
 				output += "<td>" + hospitalProvince + "</td>";   
 				output += "<td>" + hospitalDistrict + "</td>"; 
 				output += "<td>" + hospitalEmail + "</td>";
