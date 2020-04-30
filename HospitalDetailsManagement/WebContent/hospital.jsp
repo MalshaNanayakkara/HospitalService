@@ -29,7 +29,8 @@
 <html> 
 <head> 
 <meta charset="ISO-8859-1"> 
-<title>Hospital Management</title> 
+<title>Hospital Management</title>
+<link rel="stylesheet" href="Views/bootstrap.min.css"> 
 </head> 
 <body> 
  
