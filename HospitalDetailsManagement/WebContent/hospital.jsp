@@ -4,16 +4,29 @@
 <% 
 	if (request.getParameter("hospitalName") != null)  
 	{  
-		Hospital hospitalObj = new Hospital();   
+		Hospital hospitalObj = new Hospital();
+		String stsMsg = ""; 
 	
-		String stsMsg = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
+		if(request.getParameter("hidHospitalIDSave") == "")
+		{
+		 	 stsMsg = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
 										request.getParameter("hospitalProvince"),     
 										request.getParameter("hospitalDistrict"),        
 										request.getParameter("hospitalEmail"),
 										request.getParameter("hospitalPhone"),
 										request.getParameter("hospitalServices")); 
 	 
-	 session.setAttribute("statusMsg", stsMsg);
+		}
+		else
+		{
+			stsMsg = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
+					request.getParameter("hospitalProvince"),     
+					request.getParameter("hospitalDistrict"),        
+					request.getParameter("hospitalEmail"),
+					request.getParameter("hospitalPhone"),
+					request.getParameter("hospitalServices"));
+		}
+		session.setAttribute("statusMsg", stsMsg);
 	}
 
 	if (request.getParameter("hospitalID") != null)
