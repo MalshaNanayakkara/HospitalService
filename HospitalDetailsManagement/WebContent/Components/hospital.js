@@ -42,5 +42,41 @@ $(document).on("click", ".btnUpdate", function(event) {
 
 function validateHospitalForm()
 {
-
+	// Hospital Name
+	if ($("#hospitalName").val().trim() == "")
+	{
+		return "Insert Hospital Name.";
+	}
+	
+	//Hospital Province
+	if ($("#hospitalProvince").val().trim() == "")
+	{
+		return "Insert Hospital Province.";
+	} 
+	
+	//Hospital District
+	if ($("#hospitalDistrict").val().trim() == "")
+	{
+		return "Insert Hospital District.";
+	}
+	
+	
+	// Hospital Email
+	if ($("#hospitalEmail").val().trim() == "")
+	{
+		return "Insert Hospital Email.";
+	}
+	
+	// Hospital Phone
+	if ($("#hospitalPhone").val().trim() == "")
+	{
+		return "Insert Hospital Phone.";
+	}
+	
+	// Hospital Services
+	if ($("#hospitalServices").val().trim() == "")
+	{
+		return "Insert Hospital Services.";
+	}
+	return true;
 }
