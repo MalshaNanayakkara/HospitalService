@@ -1,43 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="model.Hospital"%>
     
-<% 
-	if (request.getParameter("hospitalName") != null)  
-	{  
-		Hospital hospitalObj = new Hospital();
-		String stsMsg = ""; 
-	
-		if(request.getParameter("hidHospitalIDSave") == "")
-		{
-		 	 stsMsg = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
-										request.getParameter("hospitalProvince"),     
-										request.getParameter("hospitalDistrict"),        
-										request.getParameter("hospitalEmail"),
-										request.getParameter("hospitalPhone"),
-										request.getParameter("hospitalServices")); 
-	 
-		}
-		else
-		{
-			stsMsg = hospitalObj.updateHospitals(request.getParameter("hidHospitalIDSave"),
-					request.getParameter("hospitalName"), 
-					request.getParameter("hospitalProvince"),     
-					request.getParameter("hospitalDistrict"),        
-					request.getParameter("hospitalEmail"),
-					request.getParameter("hospitalPhone"),
-					request.getParameter("hospitalServices"));
-		}
-		session.setAttribute("statusMsg", stsMsg);
-	}
-
-	if (request.getParameter("hidHospitalIDDelete") != null)
-	{
-		Hospital hospitalObj = new Hospital();
-		String stsMsg = hospitalObj.deleteHospitals(request.getParameter("hidHospitalIDDelete"));
-		session.setAttribute("statusMsg", stsMsg);
-	} 
-%>
-  
 
 <!DOCTYPE html> 
 <html> 
