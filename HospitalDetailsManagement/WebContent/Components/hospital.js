@@ -39,3 +39,8 @@ $(document).on("click", ".btnUpdate", function(event) {
 	$("#hospitalPhone").val($(this).closest("tr").find('td:eq(4)').text()); 
 	$("#hospitalServices").val($(this).closest("tr").find('td:eq(5)').text()); 
 }); 
+
+function validateHospitalForm()
+{
+
+}
