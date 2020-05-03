@@ -19,7 +19,8 @@
 		}
 		else
 		{
-			stsMsg = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
+			stsMsg = hospitalObj.updateHospitals(request.getParameter("hidHospitalIDSave"),
+					request.getParameter("hospitalName"), 
 					request.getParameter("hospitalProvince"),     
 					request.getParameter("hospitalDistrict"),        
 					request.getParameter("hospitalEmail"),
@@ -29,10 +30,10 @@
 		session.setAttribute("statusMsg", stsMsg);
 	}
 
-	if (request.getParameter("hospitalID") != null)
+	if (request.getParameter("hidHospitalIDDelete") != null)
 	{
 		Hospital hospitalObj = new Hospital();
-		String stsMsg = hospitalObj.deleteHospitals(request.getParameter("hospitalID"));
+		String stsMsg = hospitalObj.deleteHospitals(request.getParameter("hidHospitalIDDelete"));
 		session.setAttribute("statusMsg", stsMsg);
 	} 
 %>
@@ -55,16 +56,17 @@
 		Hospital Name: <input id="hospitalName" name="hospitalName" type="text" class="form-control form-control-sm"><br>   
 		Hospital Province: <input id="hospitalProvince" name="hospitalProvince" type="text" class="form-control form-control-sm"><br>   
 		Hospital District: <input id="hospitalDistrict" name="hospitalDistrict" type="text" class="form-control form-control-sm"><br>   
-		Hospital Email: <input id="hospitalEmail" name="hospitalEmaile" type="text" class="form-control form-control-sm"><br>
+		Hospital Email: <input id="hospitalEmail" name="hospitalEmail" type="text" class="form-control form-control-sm"><br>
 		Hospital Phone:<input id="hospitalPhone" name="hospitalPhone" type="text" class="form-control form-control-sm"><br>
 		Hospital Services: <input id="hospitalServices" name="hospitalServices" type="text" class="form-control form-control-sm"><br> 
 		  
 		<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">
- 		<input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
+ 		<input type="hidden" id="hidHospitalIDSave" name="hidHospitalIDSave" value="">
 	</form>  
 	<div class="alert alert-success">
 		<% out.print(session.getAttribute("statusMsg")); %>
 	</div>
+	<div id ="alertError" class="alert alert-danger"></div>
 	<br>
 
 	<%
