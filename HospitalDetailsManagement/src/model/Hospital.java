@@ -98,9 +98,8 @@ public class Hospital {
 				String hospitalPhone = rs.getString("hospitalPhone");
 				String hospitalServices = rs.getString("hospitalServices");
 				
-				output += "<tr><td><input id=\"hidHospitalIDUpdate\" name=\"hidHospitalIDUpdate\" type=\"hidden\" value=\"" 
-		                  + hospitalID + "\">" 
-		                  + hospitalName + "</td>";
+				output += "<tr><td><input id='hidHospitalIDUpdate' name='hidHospitalIDUpdate' type='hidden' value='"+ hospitalID
+						+ "'>" + hospitalName + "</td>";
 				output += "<td>" + hospitalProvince + "</td>";   
 				output += "<td>" + hospitalDistrict + "</td>"; 
 				output += "<td>" + hospitalEmail + "</td>";
@@ -108,11 +107,9 @@ public class Hospital {
 				output += "<td>" + hospitalServices + "</td>";
 				
 				
-				output += "<td><input name=\"btnUpdate\" type=\"button\" value=\"Update\" class =\"btnUpdate btn btn-secondary\"</td>" 
-						+ "<td><form method=\"post\" action=\"hospital.jsp\">"
-					    + "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
-					    + "<input name=\"hidHospitalIDDelete\" type=\"hidden\" value=\"" + hospitalID + "\">" 
-					    + "</form></td></tr>";    
+				output +=  "<td><input name='btnUpdate' type='button'  value='Update' class='btnUpdate btn btn-secondary'></td>"
+						+ "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-hospitalid='" 
+						+ hospitalID + "'>" + "</td></tr>";     
 			 
 			}
 			con.close(); 

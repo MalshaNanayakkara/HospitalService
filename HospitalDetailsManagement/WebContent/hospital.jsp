@@ -26,9 +26,7 @@
 		<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">
  		<input type="hidden" id="hidHospitalIDSave" name="hidHospitalIDSave" value="">
 	</form>  
-	<div class="alert alert-success">
-		<% out.print(session.getAttribute("statusMsg")); %>
-	</div>
+	<div class="alert alert-success"></div>
 	<div id ="alertError" class="alert alert-danger"></div>
 	<br>
 
