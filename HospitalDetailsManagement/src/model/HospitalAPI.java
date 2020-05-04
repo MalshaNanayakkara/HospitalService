@@ -1,6 +1,10 @@
 package model;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/HospitalAPI")
 public class HospitalAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	Hospital hospitalObj = new Hospital();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,7 +41,14 @@ public class HospitalAPI extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		 	 String output = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
+									request.getParameter("hospitalProvince"),     
+									request.getParameter("hospitalDistrict"),        
+									request.getParameter("hospitalEmail"),
+									request.getParameter("hospitalPhone"),
+									request.getParameter("hospitalServices")); 
+	
 	}
 
 	/**
@@ -43,13 +56,55 @@ public class HospitalAPI extends HttpServlet {
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Map paras = getParasMap(request); 
+		 
+		String output = hospitalObj.updateHospitals(paras.get("hidHospitalIDSave").toString(), paras.get("hospitalName").toString(),     
+				paras.get("hospitalProvince").toString(),        
+				paras.get("hospitalDistrict").toString(),        
+				paras.get("hospitalEmail").toString(), 
+				paras.get("hospitalPhone").toString(),
+				paras.get("hospitalServices").toString());
+		 
+		 response.getWriter().write(output);
 	}
+
+	private Map getParasMap(HttpServletRequest request)
+	{
+		// TODO Auto-generated method stub 
+		Map<String, String> map = new HashMap<String, String>();  
+		try  
+		{   
+			Scanner scanner = new Scanner(request.getInputStream(), "UTF-8");  
+			String queryString = scanner.hasNext() ?          
+					scanner.useDelimiter("\\A").next() : "";   
+			scanner.close();
+			
+			 String[] params = queryString.split("&");   
+			 for (String param : params)   
+			 {
+				 String[] p = param.split("=");    
+				 map.put(p[0], p[1]);   
+			  }  
+			 
+		}  
+		catch (Exception e)  
+		{  	
+		}  
+		return map;
+			
+	} 	
+
 
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Map paras = getParasMap(request); 
+		 
+		String output = hospitalObj.deleteHospitals(paras.get("HospitalID").toString()); 
+		 
+		response.getWriter().write(output);
 	}
 
 }
