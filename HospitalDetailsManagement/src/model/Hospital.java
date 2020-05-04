@@ -53,12 +53,14 @@ public class Hospital {
 		preparedStmt.setString(7, hServices);
 		preparedStmt.execute();
 		con.close(); 
-		output = "Inserted successfully"; 
+
+		String newHospital = readHospitals();    
+		output = "{\"status\":\"success\", \"data\": \"" + newHospital + "\"}";
 		
 		}
 		catch(Exception e) {
-		output = "Error while inserting";  
-		System.err.println(e.getMessage()); 
+			output = "{\"status\":\"error\", \"data\":\"Error while inserting the Hospital.\"}"; 
+			System.err.println(e.getMessage()); 
 		}
 		return output; 
 	}
@@ -149,11 +151,12 @@ public class Hospital {
 		   preparedStmt.execute();    
 		   con.close();
 		   
-		   output = "Updated successfully";   
+		   String newHospital = readHospitals();    
+			output = "{\"status\":\"success\", \"data\": \"" + newHospital + "\"}";  
 		   }   
 		   catch (Exception e)  
 		   {   
-			   output = "Error while updating the hospital.";    
+			   output = "{\"status\":\"error\", \"data\":\"Error while updating the hospital.\"}"; 
 			   System.err.println(e.getMessage());  
 		   } 
 		  return output;
@@ -180,12 +183,14 @@ public class Hospital {
 		 // execute the statement
 		 preparedStmt.execute();
 		 con.close();
-		 output = "Deleted successfully";
+
+		 String newHospital = readHospitals();    
+		 output = "{\"status\":\"success\", \"data\": \"" + newHospital + "\"}";
 		 }
 		 catch (Exception e)
 		 {
-		 output = "Error while deleting the hospital.";
-		 System.err.println(e.getMessage());
+			output = "{\"status\":\"error\", \"data\":\"Error while deleting the hospital.\"}"; 
+			System.err.println(e.getMessage());
 		 }
 		return output;  
 	}
