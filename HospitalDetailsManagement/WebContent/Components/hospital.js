@@ -173,12 +173,30 @@ function validateHospitalForm()
 		return "Insert Hospital Email.";
 	}
 	
+	//validate email
+	var tmpEmail = $("#hospitalEmail").val().trim();
+		var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+		if (! re.test(tmpEmail))
+		{
+		return "Insert a valid email address";
+		}
+	
+
 	// Hospital Phone
 	if ($("#hospitalPhone").val().trim() == "")
 	{
 		return "Insert Hospital Phone.";
 	}
 	
+	//Numeric Value for contoacr number
+	var tmpPhone = $("#hospitalPhone").val().trim();  
+	if (!$.isNumeric(tmpPhone))  
+	{   
+		return "Insert a numerical value for Contact Number.";  
+		
+	} 
+	 
+	 
 	// Hospital Services
 	if ($("#hospitalServices").val().trim() == "")
 	{

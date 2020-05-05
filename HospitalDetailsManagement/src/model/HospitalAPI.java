@@ -41,12 +41,12 @@ public class HospitalAPI extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
-		 String output = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
+		 String output = hospitalObj.insertHospitals(request.getParameter("hospitalName").replace("+"," "),     
 									request.getParameter("hospitalProvince"),     
 									request.getParameter("hospitalDistrict"),        
-									request.getParameter("hospitalEmail"),
+									request.getParameter("hospitalEmail").replace("%40", "@"),
 									request.getParameter("hospitalPhone"),
-									request.getParameter("hospitalServices")); 
+									request.getParameter("hospitalServices").replace("+",",")); 
 	
 		 response.getWriter().write(output);
 	}
@@ -58,12 +58,13 @@ public class HospitalAPI extends HttpServlet {
 		
 		Map paras = getParasMap(request); 
 		 
-		String output = hospitalObj.updateHospitals(paras.get("hidHospitalIDSave").toString(), paras.get("hospitalName").toString(),     
-				paras.get("hospitalProvince").toString(),        
-				paras.get("hospitalDistrict").toString(),        
-				paras.get("hospitalEmail").toString(), 
+		String output = hospitalObj.updateHospitals(paras.get("hidHospitalIDSave").toString(),
+				paras.get("hospitalName").toString().replace("+"," "),     
+				paras.get("hospitalProvince").toString().replace("+"," "),        
+				paras.get("hospitalDistrict").toString().replace("+"," "),        
+				paras.get("hospitalEmail").toString().replace("%40", "@"), 
 				paras.get("hospitalPhone").toString(),
-				paras.get("hospitalServices").toString());
+				paras.get("hospitalServices").toString().replace("%2C",","));
 		 
 		 response.getWriter().write(output);
 	}

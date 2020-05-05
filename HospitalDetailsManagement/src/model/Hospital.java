@@ -83,12 +83,6 @@ public class Hospital {
 			} 
 			
 			output = "<table border=\'1\'><tr><th>Hospital Name</th><th>Hospital Province</th><th>Hospital District</th><th>Email</th><th>Phone</th><th>Services</th><th>Update</th><th>Remove</th></tr>";
-			/*
-			 * output = "<table border=\"1\"><tr>" //+ "<th>Hospital ID</th>" +
-			 * "<th>Hospital Name</th>" + "<th>Hospital Province</th>" +
-			 * "<th>Hospital District</th>" + "<th>Email</th>" + "<th>Phone</th>" +
-			 * "<th>Services</th>" + "<th>Update</th>" + "<th>Remove</th></tr>";
-			 */
 			 
 			String query = "select * from hospital"; 
 			Statement stmt = (Statement) con.createStatement();
