@@ -4,6 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+
 
 public class Hospital {
 	
@@ -55,7 +60,8 @@ public class Hospital {
 		con.close(); 
 
 		String newHospital = readHospitals();    
-		output = "{\"status\":\"success\", \"data\": \"" + newHospital + "\"}";
+		output = "{\"status\":\"success\", \"data\": \"" + 
+						newHospital + "\"}";
 		
 		}
 		catch(Exception e) {
@@ -75,19 +81,17 @@ public class Hospital {
 			if (con == null) { 
 				return "Error while connecting to the database for reading."; 
 			} 
-			output = "<table border=\"1\"><tr>"
-					//+ "<th>Hospital ID</th>"
-					+ "<th>Hospital Name</th>"
-					+ "<th>Hospital Province</th>"
-					+ "<th>Hospital District</th>"
-					+ "<th>Email</th>"
-					+ "<th>Phone</th>"
-					+ "<th>Services</th>"
-					+ "<th>Update</th>"
-					+ "<th>Remove</th></tr>"; 
+			
+			output = "<table border=\'1\'><tr><th>Hospital Name</th><th>Hospital Province</th><th>Hospital District</th><th>Email</th><th>Phone</th><th>Services</th><th>Update</th><th>Remove</th></tr>";
+			/*
+			 * output = "<table border=\"1\"><tr>" //+ "<th>Hospital ID</th>" +
+			 * "<th>Hospital Name</th>" + "<th>Hospital Province</th>" +
+			 * "<th>Hospital District</th>" + "<th>Email</th>" + "<th>Phone</th>" +
+			 * "<th>Services</th>" + "<th>Update</th>" + "<th>Remove</th></tr>";
+			 */
 			 
 			String query = "select * from hospital"; 
-			java.sql.Statement stmt = con.createStatement();
+			Statement stmt = (Statement) con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()) 
@@ -100,7 +104,7 @@ public class Hospital {
 				String hospitalPhone = rs.getString("hospitalPhone");
 				String hospitalServices = rs.getString("hospitalServices");
 				
-				output += "<tr><td><input id='hidHospitalIDUpdate' name='hidHospitalIDUpdate' type='hidden' value='"+ hospitalID
+			output += "<tr><td><input id='hidHospitalIDUpdate' name='hidHospitalIDUpdate' type='hidden' value='"+ hospitalID
 						+ "'>" + hospitalName + "</td>";
 				output += "<td>" + hospitalProvince + "</td>";   
 				output += "<td>" + hospitalDistrict + "</td>"; 
@@ -189,7 +193,7 @@ public class Hospital {
 		 }
 		 catch (Exception e)
 		 {
-			output = "{\"status\":\"error\", \"data\":\"Error while deleting the hospital.\"}"; 
+			output = "{\"status\":\"error\", \"data\":\"Error while deleting the Hospital.\"}";   
 			System.err.println(e.getMessage());
 		 }
 		return output;  

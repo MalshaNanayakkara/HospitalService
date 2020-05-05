@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+import model.Hospital;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,30 +32,30 @@ public class HospitalAPI extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		
-		 	 String output = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
+		 String output = hospitalObj.insertHospitals(request.getParameter("hospitalName"),     
 									request.getParameter("hospitalProvince"),     
 									request.getParameter("hospitalDistrict"),        
 									request.getParameter("hospitalEmail"),
 									request.getParameter("hospitalPhone"),
 									request.getParameter("hospitalServices")); 
 	
+		 response.getWriter().write(output);
 	}
 
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		Map paras = getParasMap(request); 
 		 
 		String output = hospitalObj.updateHospitals(paras.get("hidHospitalIDSave").toString(), paras.get("hospitalName").toString(),     
@@ -70,7 +70,6 @@ public class HospitalAPI extends HttpServlet {
 
 	private Map getParasMap(HttpServletRequest request)
 	{
-		// TODO Auto-generated method stub 
 		Map<String, String> map = new HashMap<String, String>();  
 		try  
 		{   
@@ -99,10 +98,11 @@ public class HospitalAPI extends HttpServlet {
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+
 		Map paras = getParasMap(request); 
 		 
-		String output = hospitalObj.deleteHospitals(paras.get("HospitalID").toString()); 
+		String output = hospitalObj.deleteHospitals(paras.get("hospitalID").toString()); 
 		 
 		response.getWriter().write(output);
 	}

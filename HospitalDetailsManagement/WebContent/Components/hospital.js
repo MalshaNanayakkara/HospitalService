@@ -1,12 +1,9 @@
-$(document).ready(function() 
-{  
-	if ($("#alertSuccess").text().trim() == "")  
-	{   
-		$("#alertSuccess").hide();  	
-	}  
-	$("#alertError").hide(); 
-	
-}); 
+$(document).ready(function()
+{
+	$("#alertSuccess").hide();
+	$("#alertError").hide();
+});
+
  
 $(document).on("click", "#btnSave", function(event)
 {
@@ -26,8 +23,61 @@ $(document).on("click", "#btnSave", function(event)
 		}
 					
 			// If valid------------------------
-			$("#formHospital").submit(); 
+		var type = ($("#hidHospitalIDSave").val() == "") ? "POST" : "PUT"; 
+		
+		$.ajax( 
+		{  
+			url : "HospitalAPI",  
+			type : type,  
+			data : $("#formHospital").serialize(),  
+			dataType : "text",  
+			complete : function(response, status)  
+			{   
+				onHospitalSaveComplete(response.responseText, status);  
+				
+			} 
+		});
+
  });
+
+function onHospitalSaveComplete(response, status) 
+{  
+	if (status == "success")  
+	{   
+		var resultSet = JSON.parse(response); 
+
+
+		if (resultSet.status.trim() == "success") 
+		{    
+			$("#alertSuccess").text("Successfully saved.");    
+			$("#alertSuccess").show(); 
+
+ 
+			$("#divHospitalGrid").html(resultSet.data);   
+		} 
+		else if (resultSet.status.trim() == "error")   
+		{    
+			$("#alertError").text(resultSet.data);    
+			$("#alertError").show();   
+		} 
+
+
+	} 
+	else if (status == "error") 
+	{   
+		$("#alertError").text("Error while saving.");   
+		$("#alertError").show();  
+	}
+	else  
+	{   
+		$("#alertError").text("Unknown error while saving..");   
+		$("#alertError").show();  
+	} 
+
+	$("#hidHospitalIDSave").val("");  
+	$("#formHospital")[0].reset(); 
+	
+} 
 
 //UPDATE========================================== 
 $(document).on("click", ".btnUpdate", function(event) {    
@@ -40,6 +90,62 @@ $(document).on("click", ".btnUpdate", function(event) {
 	$("#hospitalServices").val($(this).closest("tr").find('td:eq(5)').text()); 
 }); 
 
+//remove
+$(document).on("click", ".btnRemove", function(event) 
+{  
+	$.ajax(  
+	{   
+		url : "HospitalAPI",   
+		type : "DELETE",   
+		data : "hospitalID=" + $(this).data("hospitalid"),   
+		dataType : "text",   
+		complete : function(response, status)  
+		
+		{    
+			onHospitalDeleteComplete(response.responseText, status);   
+			
+		}  
+	}); 
+	
+})
+	
+function onHospitalDeleteComplete(response, status) 
+{  
+	if (status == "success")  
+	{   
+		var resultSet = JSON.parse(response); 
+ 
+		if (resultSet.status.trim() == "success")   
+		{    
+			$("#alertSuccess").text("Successfully deleted.");    
+			$("#alertSuccess").show(); 
+ 
+			$("#divHospitalGrid").html(resultSet.data);   
+			
+		} 
+		else if (resultSet.status.trim() == "error")   
+		{    
+			$("#alertError").text(resultSet.data);    
+			$("#alertError").show();   
+		} 
+	} 
+	else if (status == "error")  
+	{   
+		$("#alertError").text("Error while deleting.");   
+		$("#alertError").show();  
+		
+	}
+	else  
+	{   
+		$("#alertError").text("Unknown error while deleting..");   
+		$("#alertError").show();  
+		
+	} 
+	
+} 	
+	
+
+//Client
 function validateHospitalForm()
 {
 	// Hospital Name

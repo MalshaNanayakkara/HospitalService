@@ -12,10 +12,12 @@
 <script src="Components/hospital.js"></script>
 </head> 
 <body> 
- 
-	<h1>Hospital Management</h1>  
-	<form id="formHospital" name="formHospital" method="post" action="hospital.jsp" > 
+ <div class="container">
+	<div class="row">
+		<div class="col">
+	<h1>Hospital Management</h1>
 	  
+	<form id="formHospital" name="formHospital"> 
 		Hospital Name: <input id="hospitalName" name="hospitalName" type="text" class="form-control form-control-sm"><br>   
 		Hospital Province: <input id="hospitalProvince" name="hospitalProvince" type="text" class="form-control form-control-sm"><br>   
 		Hospital District: <input id="hospitalDistrict" name="hospitalDistrict" type="text" class="form-control form-control-sm"><br>   
@@ -25,15 +27,23 @@
 		  
 		<input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">
  		<input type="hidden" id="hidHospitalIDSave" name="hidHospitalIDSave" value="">
-	</form>  
-	<div class="alert alert-success"></div>
-	<div id ="alertError" class="alert alert-danger"></div>
-	<br>
+	</form> 
+	
+	 
+	<div id="alertSuccess" class="alert alert-success"></div>
+	<div id="alertError" class="alert alert-danger"></div>
 
-	<%
-		Hospital hospitalObj = new Hospital();
-		out.print(hospitalObj.readHospitals());
-	%>
- 	
- </body> 
- </html>
+	<br>
+	
+			<div id="divHospitalGrid">
+			<%
+				Hospital hospitalObj = new Hospital();
+				out.print(hospitalObj.readHospitals());
+			%>
+		
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
