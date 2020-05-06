@@ -188,13 +188,13 @@ function validateHospitalForm()
 		return "Insert Hospital Phone.";
 	}
 	
-	//Numeric Value for contoacr number
-	var tmpPhone = $("#hospitalPhone").val().trim();  
-	if (!$.isNumeric(tmpPhone))  
-	{   
-		return "Insert a numerical value for Contact Number.";  
-		
-	} 
+	
+	//validate contact number
+	var tmpPhone = $("#hospitalPhone").val().trim();
+		var re = /(^[0-9]+[-]*[0-9]+$)/;
+		if(! re.test(tmpPhone)){
+			return "Enter Only Digits ,with or without Hyphen";
+		}
 	 
 	 
 	// Hospital Services
